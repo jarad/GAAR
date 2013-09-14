@@ -2,10 +2,10 @@ library(chron)
 
 get_times = function(d) 
 {
-  Start     = chron(times.=paste(d$Start_Hr, d$Start_Min, d$Start_Sec, sep=":"))
-  Canoe_End = chron(times.=paste(d$Canoe_Hr, d$Canoe_Min, d$Canoe_Sec, sep=":"))
-  Bike_End  = chron(times.=paste(d$Bike_Hr,  d$Bike_Min,  d$Bike_Sec,  sep=":"))
-  End       = chron(times.=paste(d$Run_Hr,   d$Run_Min,   d$Run_Sec,   sep=":"))
+  Start     = times(paste(d$Start_Hr, d$Start_Min, d$Start_Sec, sep=":"))
+  Canoe_End = times(paste(d$Canoe_Hr, d$Canoe_Min, d$Canoe_Sec, sep=":"))
+  Bike_End  = times(paste(d$Bike_Hr,  d$Bike_Min,  d$Bike_Sec,  sep=":"))
+  End       = times(paste(d$Run_Hr,   d$Run_Min,   d$Run_Sec,   sep=":"))
 
   d$Canoe = as.character(Canoe_End - Start)
   d$Bike  = as.character(Bike_End  - Canoe_End)

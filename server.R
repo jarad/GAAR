@@ -1,3 +1,5 @@
+library(reshape2)
+
 source("get_times.R")
 
 d = get_times(read.csv("data/GAAR2013.csv"))
@@ -15,5 +17,19 @@ shinyServer(function(input, output) {
   output$table <- renderTable({
     dd()
   }, include.rownames = FALSE)
+
+  output$plot <- renderPlot({
+    o <- dd()
+    o$Canoe = times(o$Canoe)
+    o$Bike = times(o$Bike)
+    o$Run = times(o$Run)
+
+    m = melt(o, measure.vars=c("Canoe","Bike","Run"),
+             variable.name="Event", value.name="Time")
+    m$Rank = as.factor(m$Rank)
+
+    print(barchart(Time~Rank, data=m, groups=Event, stack=TRUE,
+                   auto.key = list(space="right")))
+  })
 })
 
