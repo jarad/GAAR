@@ -28,8 +28,10 @@ shinyServer(function(input, output) {
              variable.name="Event", value.name="Time")
     m$Rank = as.factor(m$Rank)
 
-    print(barchart(Time~Rank, data=m, groups=Event, stack=TRUE,
-                   auto.key = list(space="right")))
+    p = ggplot(m, aes(x=Rank, y=Time*24, fill=Event)) + 
+        geom_bar(stat="identity") + 
+        ylab("Time (hours)") 
+    print(p)
   })
 })
 
