@@ -1,3 +1,4 @@
+library(ggplot2)
 library(reshape2)
 
 source("get_times.R")
