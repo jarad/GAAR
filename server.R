@@ -21,11 +21,11 @@ shinyServer(function(input, output) {
 
   output$plot <- renderPlot({
     o <- dd()
-    o$Canoe = times(o$Canoe)
+    o$Kayak = times(o$Kayak)
     o$Bike = times(o$Bike)
     o$Run = times(o$Run)
 
-    m = melt(o, measure.vars=c("Canoe","Bike","Run"),
+    m = melt(o, measure.vars=c("Kayak","Bike","Run"),
              variable.name="Event", value.name="Time")
     m$Rank = as.factor(m$Rank)
 

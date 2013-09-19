@@ -20,7 +20,7 @@ shinyUI(pageWithSidebar(
                 multiple=TRUE),
 
     radioButtons("sort", "Sort by:",
-                c("Canoe","Bike","Run","Total"),"Total")
+                c("Kayak","Bike","Run","Total"),"Total")
 
   ),
 
