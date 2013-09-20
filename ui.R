@@ -15,9 +15,11 @@ shinyUI(pageWithSidebar(
     selectInput("year", "Year:",
                 gsub("\\D","",files),"2013"),
 
-    selectInput("category", "Category:", 
-                levels(d$Category), levels(d$Category),
-                multiple=TRUE),
+    br(),
+    htmlOutput("cat1"),
+    htmlOutput("cat2"),
+    htmlOutput("cat3"),
+    br(),
 
     radioButtons("sort", "Sort by:",
                 c("Kayak","Bike","Run","Total"),"Total")
