@@ -3,7 +3,7 @@ library(reshape2)
 
 source("fix_data.R")
 
-shinyServer(function(input, output) {
+shinyServer(function(input, output, session) {
 
   # Read in data file for selected year
   dat <- reactive({
@@ -48,11 +48,6 @@ shinyServer(function(input, output) {
     o$Cat2 = factor(o$Cat2)
     o$Cat3 = factor(o$Cat3)
 
-    # Remove categories with only one level
-    if (nlevels(o$Cat1)==1) o$Cat1 = NULL
-    if (nlevels(o$Cat2)==1) o$Cat2 = NULL
-    if (nlevels(o$Cat3)==1) o$Cat3 = NULL
-
     # Add overall rank column
     o = o[order(o$Total),]
     o$Rank = 1:nrow(o)
@@ -63,17 +58,29 @@ shinyServer(function(input, output) {
 
 
 
-
+  # Table
   output$table <- renderTable({
-    dd()
+    o <- dd()
+    
+    # Remove categories with only one level
+    if (nlevels(o$Cat1)==1) o$Cat1 = NULL
+    if (nlevels(o$Cat2)==1) o$Cat2 = NULL
+    if (nlevels(o$Cat3)==1) o$Cat3 = NULL
+
+    o 
   }, include.rownames = FALSE)
 
+
+  # Plot
   output$plot <- renderPlot({
     o <- dd()
+
+    # Create times from characters
     o$Kayak = times(o$Kayak)
     o$Bike  = times(o$Bike)
     o$Run   = times(o$Run)
 
+    # Recreate ranks 
     o$Rank = 1:nrow(o)
 
     m = melt(o, measure.vars=c("Kayak","Bike","Run"),
