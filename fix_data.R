@@ -14,11 +14,6 @@ fix_data = function(d)
   d$Run   = as.character(End       - Bike_End)
   d$Total = as.character(End       - Start)
 
-  d$Start_Hr <- d$Start_Min <- d$Start_Sec <- NULL
-  d$Kayak_Hr <- d$Kayak_Min <- d$Kayak_Sec <- NULL
-  d$Bike_Hr <- d$Bike_Min <- d$Bike_Sec <- NULL
-  d$Run_Hr <- d$Run_Min <- d$Run_Sec <- NULL
-
-  return(d)
+  return(d[,c("Bib","Bib2","Name","Cat1","Cat2","Cat3","Kayak","Bike","Run","Total")])
 }
 
