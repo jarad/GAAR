@@ -1,13 +1,13 @@
 library(ggplot2)
 library(reshape2)
 
-source("get_times.R")
+source("fix_data.R")
 
 shinyServer(function(input, output) {
 
   # Read in data file for selected year
   dat <- reactive({
-    d = get_times(read.csv(paste("data/GAAR",input$year,".csv",sep="")))
+    d = fix_data(read.csv(paste("data/GAAR",input$year,".csv",sep="")))
     d$Cat3 = factor(d$Cat3)
     d
   })

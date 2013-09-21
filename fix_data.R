@@ -1,7 +1,9 @@
 library(chron)
 
-get_times = function(d) 
+fix_data = function(d) 
 {
+  d = na.omit(d)
+
   Start     = times(paste(d$Start_Hr, d$Start_Min, d$Start_Sec, sep=":"))
   Kayak_End = times(paste(d$Kayak_Hr, d$Kayak_Min, d$Kayak_Sec, sep=":"))
   Bike_End  = times(paste(d$Bike_Hr,  d$Bike_Min,  d$Bike_Sec,  sep=":"))
@@ -19,3 +21,4 @@ get_times = function(d)
 
   return(d)
 }
+
