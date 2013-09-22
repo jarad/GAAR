@@ -29,8 +29,8 @@ shinyServer(function(input, output, session) {
     d = dat()
 
     if (all(input$cat1=="Relay")) {
-      checkboxGroupInput("cat3","",
-        levels(d$Cat3), levels(d$Cat3))
+      wellPanel(checkboxGroupInput("cat3","",
+        levels(d$Cat3), levels(d$Cat3)))
     } else {
       return(NULL)
     }
