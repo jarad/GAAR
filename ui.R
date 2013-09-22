@@ -17,8 +17,8 @@ shinyUI(pageWithSidebar(
 
     br(),
     htmlOutput("cat1"),
-    htmlOutput("cat2"),
     htmlOutput("cat3"),
+    htmlOutput("cat2"),
     br(),
 
     radioButtons("sort", "Sort by:",

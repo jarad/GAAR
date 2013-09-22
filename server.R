@@ -27,8 +27,13 @@ shinyServer(function(input, output, session) {
 
   output$cat3 <- renderUI({
     d = dat()
-    checkboxGroupInput("cat3","Relay",
-                       levels(d$Cat3), levels(d$Cat3))
+
+    if (all(input$cat1=="Relay")) {
+      checkboxGroupInput("cat3","",
+        levels(d$Cat3), levels(d$Cat3))
+    } else {
+      return(NULL)
+    }
   })
 
   # 
